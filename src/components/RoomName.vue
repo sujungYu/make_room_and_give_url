@@ -8,7 +8,7 @@
 
 <script>
 import axios from "axios";
-import jwt_decode from 'jwt-decode'
+// import jwt_decode from 'jwt-decode'
 export default {
     data: function() {
         return {
@@ -21,13 +21,13 @@ export default {
 
         },
         create: function() {
-             var url = 'https://jsonplaceholder.typicode.com/room/create';
+             var url = 'http://localhost:8000/room';
              var data = {
                  room_name: this.roomname,
-                 room_manager: jwt_decode(localStorage.getItem("token")).user_id
+                //  room_manager: jwt_decode(localStorage.getItem("token"))
              }
              axios.post(url,data).then((response) => {
-                 console.log(response);
+                 console.log(response.data.id);
                  this.acceptInvitation(response.data.id)
              })
              .catch(function(error){
